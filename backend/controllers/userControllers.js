@@ -1,5 +1,4 @@
-export const userRegister = async (req, res) => {
-  res.json({
-    message: "hello",
-  });
-};
+import User from "../models/userModel.js";
+
+// register a user logic
+export const userRegister = async (req, res) => {};
