@@ -16,6 +16,8 @@ const LoginScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, userInfo } = userLogin;
 
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
@@ -25,8 +27,6 @@ const LoginScreen = ({ location, history }) => {
       dispatch(login(email, password));
     }
   };
-
-  const redirect = location.search ? location.search.split("=")[1] : "/";
 
   useEffect(() => {
     if (userInfo) {
@@ -74,7 +74,9 @@ const LoginScreen = ({ location, history }) => {
             <Row className="py-3">
               <Col>
                 Don't have an account? Create one{" "}
-                <Link to={redirect ? `/login?redirect=${redirect}` : "/login"}>
+                <Link
+                  to={redirect ? `/signup?redirect=${redirect}` : "/signup"}
+                >
                   Sign Up
                 </Link>
               </Col>

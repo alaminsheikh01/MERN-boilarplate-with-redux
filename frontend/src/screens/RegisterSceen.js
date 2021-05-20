@@ -25,6 +25,7 @@ const RegisterSceen = ({ location, history }) => {
       setMessage("Password do not match");
     } else {
       dispatch(register(name, email, password));
+      //history.push("/login");
     }
   };
 

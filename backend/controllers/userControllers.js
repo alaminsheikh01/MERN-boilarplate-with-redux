@@ -10,9 +10,11 @@ export const userRegister = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body;
 
   const userExist = await User.findOne({ email });
+
   if (userExist) {
-    res.status(400);
-    throw new Error("User already exist");
+    res.status(400).json({
+      message: "User already exist",
+    });
   }
 
   const user = await User.create({
@@ -21,7 +23,7 @@ export const userRegister = asyncHandler(async (req, res) => {
     password,
   });
   if (user) {
-    res.status(201).json({
+    res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
@@ -30,8 +32,7 @@ export const userRegister = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid user data");
+    res.status(400).json({ message: "Invalid user data" });
   }
 });
 
@@ -51,8 +52,7 @@ export const userLogin = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
     });
   } else {
-    res.status(400);
-    throw new Error("Invalid email or Password");
+    res.status(400).json({ message: "Invalid email or Password" });
   }
 });
 

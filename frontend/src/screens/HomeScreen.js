@@ -1,10 +1,12 @@
 import React from "react";
+import { Container } from "react-bootstrap";
 
 const HomeScreen = () => {
   return (
-    <div>
-      <h2>Home Screen</h2>
-    </div>
+    <Container className="mt-5">
+      <h1>Welcome to MERN boilarPlate with redux</h1>
+      <p>Made by Alamin Sheikh</p>
+    </Container>
   );
 };
 
